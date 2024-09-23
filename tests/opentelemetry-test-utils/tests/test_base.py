@@ -12,26 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# FIXME: Use importlib.metadata when support for 3.11 is dropped if the rest of
-# the supported versions at that time have the same API.
-from importlib_metadata import (  # type: ignore
-    Distribution,
-    EntryPoint,
-    EntryPoints,
-    PackageNotFoundError,
-    distributions,
-    entry_points,
-    requires,
-    version,
-)
+from opentelemetry.test.test_base import TestBase
 
-__all__ = [
-    "entry_points",
-    "version",
-    "EntryPoint",
-    "EntryPoints",
-    "requires",
-    "Distribution",
-    "distributions",
-    "PackageNotFoundError",
-]
+
+class TestBaseTestCase(TestBase):
+    def test_get_sorted_metrics_works_without_metrics(self):
+        metrics = self.get_sorted_metrics()
+        self.assertEqual(metrics, [])
